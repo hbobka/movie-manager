@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  movie-manager-mongo-con:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: gofore
+      MONGO_INITDB_ROOT_PASSWORD: gofore
+  movie-manager-be-con:
+    image: "movie-manager-be"
+    ports:
+      - "3000:3000"
+    environment:
+      MONGODB_USERNAME: gofore
+      MONGODB_PASSWORD: gofore
+    depends_on:
+      - movie-manager-mongo-con
+  movie-manager-fe-con:
+    image: "movie-manager-fe"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - movie-manager-be-con
+
+volumes:
+  data:
