@@ -1,0 +1,9 @@
+{
+  "name": "movie-manager",
+  "version": "1.0.0",
+  "scripts": {
+    "setup:containers": "docker compose up",
+    "setup:data": "node ./data/setupData.js",
+    "setup:clear": "docker compose down -v"
+  }
+}
