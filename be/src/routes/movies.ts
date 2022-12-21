@@ -9,8 +9,8 @@ import {
 
 const router = Router();
 router.post("/", createMovie);
-router.get("/:id", getMovie);
 router.get("/", getAllMovies);
+router.get("/:id", getMovie);
 router.put("/:id", updateMovie);
 router.delete("/:id", deleteMovie);
 
