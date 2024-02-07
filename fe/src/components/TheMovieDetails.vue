@@ -4,6 +4,8 @@ import type { Movie } from "../models/movie";
 import BaseButton from "../components/BaseButton.vue";
 import router from "@/router";
 
+const APP_URL = "ec2-3-76-105-215.eu-central-1.compute.amazonaws.com";
+
 const props = defineProps<{ movieId: string }>();
 const isLoading = ref(false);
 const isNew = props.movieId === "new";
@@ -32,7 +34,7 @@ const getMovieById = async () => {
     isLoading.value = true;
 
     const response = await fetch(
-      `http://localhost:3000/movies/${props.movieId}`
+      `http://${APP_URL}:3000/movies/${props.movieId}`
     );
 
     const json = await response.json();
@@ -46,7 +48,7 @@ const getMovieById = async () => {
 
 const handleSave = async () => {
   try {
-    await fetch(`http://localhost:3000/movies/${props.movieId}`, {
+    await fetch(`http://${APP_URL}:3000/movies/${props.movieId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +63,7 @@ const handleSave = async () => {
 
 const handleCreate = async () => {
   try {
-    await fetch(`http://localhost:3000/movies`, {
+    await fetch(`http://${APP_URL}:3000/movies`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

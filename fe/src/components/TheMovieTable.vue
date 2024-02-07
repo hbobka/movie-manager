@@ -10,10 +10,12 @@ import IconDelete from "../components/icons/IconDelete.vue";
 const movies = ref<Movie[]>([]);
 const isLoading = ref(false);
 const searchTerm = ref("");
+const APP_URL = "ec2-3-76-105-215.eu-central-1.compute.amazonaws.com";
+
 
 const getAllMovies = async (): Promise<Movie[]> => {
   try {
-    const response = await fetch("http://localhost:3000/movies");
+    const response = await fetch(`http://${APP_URL}:3000/movies`);
     const json = await response.json();
 
     return json.movies;
@@ -30,7 +32,7 @@ const filteredMovies = computed(() => {
 });
 
 const handleDelete = async (id: any) => {
-  await fetch(`http://localhost:3000/movies/${id}`, { method: "DELETE" });
+  await fetch(`http://${APP_URL}:3000/movies/${id}`, { method: "DELETE" });
 
   const movieIndex = movies.value.findIndex((movie) => movie.id === id);
   movies.value.splice(movieIndex, 1);
